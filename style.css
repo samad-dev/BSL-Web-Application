@@ -1,0 +1,32 @@
+.login_banner {
+    /* The image used */
+    background-image: url("images/login_banner.jpg");
+  
+    /* Full height */
+    height: 100%;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .marron_bg{
+    background-color: maroon !important;
+    color:#fff !important;
+  }
+  .select2-container--default .select2-dropdown--below {
+    z-index: 10000;
+  }
+  .arrow_text{
+    font-style: oblique;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .select2-container--default .select2-selection--single {
+    height: 40px; /* adjust height to your preference */
+  }
+  .select2-container--default .select2-selection--single .select2-selection__rendered{
+    line-height: 38px;
+  }
