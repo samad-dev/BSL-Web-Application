@@ -338,6 +338,7 @@ body[data-sidebar-size=sm] .vertical-menu #sidebar-menu>ul>li:hover>ul {
 
             </ul>
             </li>
+            <?php if($p_role == 'Admin' || $p_role == 'Distributor' ){?>
             <li>
                 <a href="javascript: void(0);" class="has-arrow">
                     <i class="fas fa-user"></i>
@@ -353,6 +354,7 @@ body[data-sidebar-size=sm] .vertical-menu #sidebar-menu>ul>li:hover>ul {
 
                 </ul>
             </li>
+            <?php }?>
 
             <li>
                 <a href="javascript: void(0);" class="has-arrow">
@@ -365,16 +367,17 @@ body[data-sidebar-size=sm] .vertical-menu #sidebar-menu>ul>li:hover>ul {
                             <span data-key="t-calendar">All Asset</span>
                         </a>
                     </li>
+                    <?php if($p_role == 'Admin' || $p_role == 'Distributor' ){?>
                     <li>
                         <a href="asset_assign.php">
                             <span data-key="t-calendar">Assign Asset</span>
                         </a>
                     </li>
-
+                    <?php }?>
 
                 </ul>
             </li>
-
+            <?php if($p_role == 'Admin' || $p_role == 'Distributor' ){?>
             <li>
                 <a href="javascript: void(0);" class="has-arrow">
                     <i class=" fas fa-users"></i>
@@ -390,6 +393,7 @@ body[data-sidebar-size=sm] .vertical-menu #sidebar-menu>ul>li:hover>ul {
 
                 </ul>
             </li>
+            <?php }?>
             <li>
                 <a href="javascript: void(0);" class="has-arrow">
                     <i class="far fa-map"></i>
@@ -441,6 +445,7 @@ body[data-sidebar-size=sm] .vertical-menu #sidebar-menu>ul>li:hover>ul {
 
                 </ul>
             </li>
+            <?php if($p_role == 'Admin' || $p_role == 'Distributor' ){?>
             <li>
                 <a href="javascript: void(0);" class="has-arrow">
                     <i class="fab fa-tripadvisor"></i>
@@ -467,6 +472,7 @@ body[data-sidebar-size=sm] .vertical-menu #sidebar-menu>ul>li:hover>ul {
 
                 </ul>
             </li>
+            <?php }?>
             <li>
                 <a href="javascript: void(0);" class="has-arrow">
                     <i class="fas fa-file-signature"></i>
@@ -478,7 +484,7 @@ body[data-sidebar-size=sm] .vertical-menu #sidebar-menu>ul>li:hover>ul {
                             <span data-key="t-calendar">All Reports</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="nr_report.php">
                             <span data-key="t-calendar">NR Asset</span>
                         </a>
@@ -493,11 +499,11 @@ body[data-sidebar-size=sm] .vertical-menu #sidebar-menu>ul>li:hover>ul {
                             <span data-key="t-calendar">Asset Current Location</span>
                         </a>
                     </li>
-                    <!-- <li>
+                    <li>
                         <a href="overspeed_report.php">
                             <span data-key="t-calendar">Asset Violation </span>
                         </a>
-                    </li> -->
+                    </li>
                     <li>
                         <a href="history_report.php">
                             <span data-key="t-calendar">Asset History Report </span>
@@ -572,7 +578,7 @@ body[data-sidebar-size=sm] .vertical-menu #sidebar-menu>ul>li:hover>ul {
                         <a href="mileage_report.php">
                             <span data-key="t-calendar">Mileage Report</span>
                         </a>
-                    </li>
+                    </li> -->
 
 
                 </ul>

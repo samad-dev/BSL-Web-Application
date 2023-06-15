@@ -2,7 +2,7 @@
 date_default_timezone_set("Asia/Karachi");
 ini_set('max_execution_time', -1);
 $url1 = $_SERVER['REQUEST_URI'];
-// header("Refresh: 20; URL=$url1");
+header("Refresh: 200; URL=$url1");
 
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');

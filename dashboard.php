@@ -127,18 +127,12 @@ $harsh_acc = mysqli_query($db, "SELECT et.*,dc.name FROM bsl.users_devices as ud
 $count_harsh_acc = mysqli_num_rows($harsh_acc);
 $harsh_corner = mysqli_query($db, "SELECT et.*,dc.name FROM bsl.users_devices as ud join event as et on et.object=ud.devices_id join devices as dc on dc.id=ud.devices_id where ud.users_id='$id' and et.value=3 and et.time>='$from' and et.time<='$to';");
 $count_harsh_corner = mysqli_num_rows($harsh_corner);
-// $geo_check_in = mysqli_query($db, "SELECT dc.name,dc.tracker as vehicle_make,dc.time,dc.speed,dc.location as vlocation ,dc.lat as latitude,dc.lng as longitude,vg.speed_limit,geo.consignee_name FROM bsl.geo_in_check as gc 
-// join devices as dc on dc.id=gc.veh_id
-// join users_devices as ud on ud.devices_id=gc.veh_id 
-// join vehicle_geofence as vg on vg.vehicle_id=gc.veh_id 
-// join geofenceing as geo on geo.id=vg.geo_id
-// where dc.time >='$prev_date' and ud.users_id='$id' and vg.geo_id=gc.geo_id and vg.vehicle_id=gc.veh_id");
-// $count_geo_check_in = mysqli_num_rows($geo_check_in);
-
-$geo_check_in = mysqli_query($db, "SELECT *,da.type as alert_type FROM bsl.driving_alerts as da 
-join devices as dc on dc.id=da.device_id
-join geofenceing as geo on geo.id=da.geo_id
-where da.type='Violate Speed Limit' and da.created_by='$id' and da.created_at>='$from' and da.created_at<='$to' order by da.id desc;");
+$geo_check_in = mysqli_query($db, "SELECT dc.name,dc.tracker as vehicle_make,dc.time,dc.speed,dc.location as vlocation ,dc.lat as latitude,dc.lng as longitude,vg.speed_limit,geo.consignee_name FROM bsl.geo_in_check as gc 
+join devices as dc on dc.id=gc.veh_id
+join users_devices as ud on ud.devices_id=gc.veh_id 
+join vehicle_geofence as vg on vg.vehicle_id=gc.veh_id 
+join geofenceing as geo on geo.id=vg.geo_id
+where dc.time >='$prev_date' and ud.users_id='$id' and vg.geo_id=gc.geo_id and vg.vehicle_id=gc.veh_id");
 $count_geo_check_in = mysqli_num_rows($geo_check_in);
 
 $night_voilation = mysqli_query($db, "SELECT da.*,dc.name FROM bsl.driving_alerts as da join devices as dc on dc.id=da.device_id where da.type='Night time violations' and da.created_at>='$from' and da.created_at<='$to' and da.created_by='$id';");
@@ -146,8 +140,6 @@ $count_night_voilation = mysqli_num_rows($night_voilation);
 
 $all_overspeed = mysqli_query($db, "SELECT da.*,dc.name FROM bsl.driving_alerts as da join devices as dc on dc.id=da.device_id where da.type='Overspeed' and da.created_at>='$from' and da.created_at<='$to' and da.created_by='$id';");
 $count_all_overspeed = mysqli_num_rows($all_overspeed);
-
-
 
 $black_spot = mysqli_query($db, "SELECT da.*,dc.name FROM bsl.driving_alerts as da join devices as dc on dc.id=da.device_id where da.type='Un-Authorized Stop' and da.created_at>='$from' and da.created_at<='$to' and da.created_by='$id';");
 $count_black_spot = mysqli_num_rows($black_spot);
@@ -362,7 +354,7 @@ echo "</script>";
                                 </div>
                             </div>
                         </div> -->
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6" id='dash_harsh'>
                             <!-- card -->
                             <div class="card card-h-100">
                                 <!-- card body -->
@@ -379,7 +371,7 @@ echo "</script>";
                                 </div><!-- end card body -->
                             </div><!-- end card -->
                         </div>
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6" id="dash_acce">
                             <!-- card -->
                             <div class="card card-h-100">
                                 <!-- card body -->
@@ -396,7 +388,7 @@ echo "</script>";
                                 </div><!-- end card body -->
                             </div><!-- end card -->
                         </div>
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6" id="dash_cornering">
                             <!-- card -->
                             <div class="card card-h-100">
                                 <!-- card body -->
@@ -413,7 +405,7 @@ echo "</script>";
                                 </div><!-- end card body -->
                             </div><!-- end card -->
                         </div>
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6" id="dash_geo_in">
                             <!-- card -->
                             <div class="card card-h-100">
                                 <!-- card body -->
@@ -430,7 +422,7 @@ echo "</script>";
                                 </div><!-- end card body -->
                             </div><!-- end card -->
                         </div>
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6" id="dash_night_voilation">
                             <!-- card -->
                             <div class="card card-h-100">
                                 <!-- card body -->
@@ -447,7 +439,7 @@ echo "</script>";
                                 </div><!-- end card body -->
                             </div><!-- end card -->
                         </div>
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6" d="dash_speed_voilation">
                             <!-- card -->
                             <div class="card card-h-100">
                                 <!-- card body -->
@@ -464,7 +456,7 @@ echo "</script>";
                                 </div><!-- end card body -->
                             </div><!-- end card -->
                         </div>
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6" id="dash_un_auth_stop">
                             <!-- card -->
                             <div class="card card-h-100">
                                 <!-- card body -->
@@ -481,7 +473,7 @@ echo "</script>";
                                 </div><!-- end card body -->
                             </div><!-- end card -->
                         </div>
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6" id="dash_ecess_driving">
                             <!-- card -->
                             <div class="card card-h-100">
                                 <!-- card body -->
@@ -1026,7 +1018,6 @@ echo "</script>";
                                         <th>Coordinates</th>
                                         <th>Speed</th>
                                         <th>Speed Limit in fence</th>
-                                        <th class="text-center">Track</th>
 
 
 
@@ -1051,24 +1042,19 @@ echo "</script>";
                                                 <?php echo $row["time"]; ?>
                                             </td>
                                             <td>
-                                                <?php echo $row["location"]; ?>
+                                                <?php echo $row["vlocation"]; ?>
                                             </td>
                                             <td>
-                                                <?php echo $row["lat"] . ' , ' . $row["lng"]; ?>
+                                                <?php echo $row["latitude"] . ' , ' . $row["longitude"]; ?>
                                             </td>
 
                                             <td>
-                                                <?php echo $row["v_speed"]; ?>
+                                                <?php echo $row["speed"]; ?>
                                             </td>
                                             <td>
-                                                <?php echo $row["allow_speed"]; ?>
+                                                <?php echo $row["speed_limit"]; ?>
                                             </td>
-                                            <td class="text-center">
 
-                                                <a href="check_alerts.php?id=<?php echo $row["pos_id"]; ?>&geo=&type='<?php echo $row["alert_type"]; ?>'" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
-                                                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                                                    </svg></a>
-                                            </td>
 
 
 
@@ -1406,6 +1392,7 @@ echo "</script>";
 
 <script>
     $(document).ready(function() {
+        set_rights();
         $('#example').DataTable({
             dom: 'Bfrtip',
             buttons: [{
@@ -1907,6 +1894,75 @@ echo "</script>";
 
         donut.render();
     });
+
+    function set_rights() {
+        $.ajax({
+            url: "ajax/get/get_right_data.php",
+            type: "GET",
+            cache: false,
+            success: function(data) {
+                data = JSON.parse(data)
+                console.log(data);
+
+
+
+                var acl = data['dashboard_tab'];
+                var r_acl = JSON.parse(acl);
+                var dash_harsh = r_acl.dash_harsh;
+                var dash_acce = r_acl.dash_acce;
+                var dash_cornering = r_acl.dash_cornering;
+                var dash_geo_in = r_acl.dash_geo_in;
+                var dash_speed_voilation = r_acl.dash_speed_voilation;
+                var dash_night_voilation = r_acl.dash_night_voilation;
+                var dash_un_auth_stop = r_acl.dash_un_auth_stop;
+                var dash_ecess_driving = r_acl.dash_ecess_driving;
+                //    alert(dash_ecess_driving)
+
+                if (dash_harsh == '0') {
+                    document.getElementById('dash_harsh').style.display = 'none';
+
+                }
+
+                if (dash_harsh == '0') {
+                    document.getElementById('dash_acce').style.display = 'none';
+
+                }
+                if (dash_cornering == '0') {
+                    document.getElementById('dash_cornering').style.display = 'none';
+
+                }
+                if (dash_geo_in == '0') {
+                    document.getElementById('dash_geo_in').style.display = 'none';
+
+                }
+                if (dash_speed_voilation == '0') {
+                    document.getElementById('dash_speed_voilation').style.display = 'none';
+
+                }
+
+                if (dash_night_voilation == '0') {
+                    document.getElementById('dash_night_voilation').style.display = 'none';
+
+                }
+                if (dash_un_auth_stop == '0') {
+                    document.getElementById('dash_un_auth_stop').style.display = 'none';
+
+                }
+
+                if (dash_ecess_driving == '0') {
+                    document.getElementById('dash_ecess_driving').style.display = 'none';
+
+                }
+
+
+
+                // console.log("main_desh  =>" + create);
+
+
+                // $('#table').html(data);
+            }
+        });
+    }
 </script>
 
 <!-- Mirrored from themesbrand.com/minia/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Jan 2023 10:00:07 GMT -->
